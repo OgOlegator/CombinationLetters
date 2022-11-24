@@ -2,6 +2,9 @@
 
 var inString = Console.ReadLine();
 
+if(string.IsNullOrEmpty(inString))
+    return;
+
 var result = CombinationsLatter.GetAllSequences(inString.ToArray());
 
 foreach(var comb in result)
