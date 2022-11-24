@@ -2,25 +2,25 @@
 
 var inString = Console.ReadLine();
 
-var result = Combination.GetAllSequences(inString.ToArray());
+var result = CombinationsLatter.GetAllSequences(inString.ToArray());
 
 foreach(var comb in result)
     Console.WriteLine(comb);
 
-public class Combination
+public class CombinationsLatter
 {
-    public static IEnumerable<String> GetAllSequences(char[] chars)
-        => chars.SelectMany(x => GetCombs("", x, chars));
+    public static IEnumerable<String> GetAllSequences(char[] charsArr)
+        => charsArr.SelectMany(x => GetCombs("", x, charsArr));
 
-    private static List<string> GetCombs(string combination, char nextChar, char[] chars)
+    private static List<string> GetCombs(string combination, char nextChar, char[] charsArr)
     {
-        var newChar = chars.Where(x => x != nextChar).ToArray();
+        var newChars = charsArr.Where(x => x != nextChar).ToArray();
 
         combination += nextChar;
 
-        if (newChar.Count() == 0)
+        if (newChars.Count() == 0)
             return new List<string> { combination };
 
-        return newChar.SelectMany(x => GetCombs(combination, x, newChar)).ToList();
+        return newChars.SelectMany(x => GetCombs(combination, x, newChars)).ToList();
     }
 }
